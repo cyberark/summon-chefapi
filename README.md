@@ -59,3 +59,5 @@ Configuration of this provider is through environment variables:
 To run: `go build && ./summon-chefapi`.
 
 To test: `go test`.
+
+To build: `./.build.sh && ./.package.sh`. `pkg/dist` holds the tar.gz files.
