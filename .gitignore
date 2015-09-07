@@ -1,0 +1,6 @@
+.idea
+summon-chefapi
+vars.sh
+*.pem
+secrets.yml
+encrypted_data_bag_secret*

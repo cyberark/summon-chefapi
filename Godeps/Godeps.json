@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/conjurinc/summon-chefapi",
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/go-chef/chef",
+			"Comment": "0.0.1-38-ga794685",
+			"Rev": "a7946859d16db4d3d574f78728676ad17bbd991c"
+		}
+	]
+}

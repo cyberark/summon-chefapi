@@ -1,0 +1,57 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"github.com/go-chef/chef"
+	"os"
+)
+
+func main() {
+	if len(os.Args) != 2 {
+		printAndExit(fmt.Errorf("No argument given"))
+	}
+	variablePath := os.Args[1]
+	bagName, bagItem, keyName, err := parsePath(variablePath)
+	if err != nil {
+		printAndExit(fmt.Errorf("Path '%s' is invalid", variablePath))
+	}
+
+	nodeName := readEnvVar("CHEF_NODE_NAME")
+	clientKeyPath := readEnvVar("CHEF_CLIENT_KEY_PATH")
+	serverUrl := readEnvVar("CHEF_SERVER_URL")
+	decryptionKeyPath := readEnvVar("CHEF_DECRYPTION_KEY_PATH")
+
+	key, err := ioutil.ReadFile(clientKeyPath)
+	if err != nil {
+		printAndExit(err)
+	}
+
+	decryptionKey, err := ioutil.ReadFile(decryptionKeyPath)
+	if err != nil {
+		printAndExit(err)
+	}
+
+	client, err := chef.NewClient(&chef.Config{
+		Name:    nodeName,
+		Key:     string(key),
+		BaseURL: fmt.Sprintf("%s/foo", serverUrl), // /foo is needed here because of how URLs are parsed by go-chef
+	})
+	if err != nil {
+		printAndExit(err)
+	}
+
+	item, err := client.DataBags.GetItem(bagName, bagItem)
+	if err != nil {
+		printAndExit(err)
+	}
+
+	encrypted := NewEncryptedDataBagItem(item)
+
+	unencrypted, err := encrypted.DecryptKey(keyName, decryptionKey)
+	if err != nil {
+		printAndExit(err)
+	}
+
+	fmt.Print(unencrypted)
+}
