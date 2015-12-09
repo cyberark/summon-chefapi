@@ -21,6 +21,7 @@ func main() {
 	clientKeyPath := readEnvVar("CHEF_CLIENT_KEY_PATH")
 	serverUrl := readEnvVar("CHEF_SERVER_URL")
 	decryptionKeyPath := readEnvVar("CHEF_DECRYPTION_KEY_PATH")
+        sslSkipCheck  := readEnvVar("CHEF_SSL_CHECK")
 
 	key, err := ioutil.ReadFile(clientKeyPath)
 	if err != nil {
@@ -32,9 +33,16 @@ func main() {
 		printAndExit(err)
 	}
 
+        var sslOption bool = false
+
+        if (sslSkipCheck == "true") {
+         sslOption = true
+        }
+
 	client, err := chef.NewClient(&chef.Config{
 		Name:    nodeName,
 		Key:     string(key),
+		SkipSSL: sslOption,
 		BaseURL: fmt.Sprintf("%s/foo", serverUrl), // /foo is needed here because of how URLs are parsed by go-chef
 	})
 	if err != nil {
