@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"github.com/go-chef/chef"
+	"io/ioutil"
 	"os"
 )
 
@@ -36,6 +36,7 @@ func main() {
 		Name:    nodeName,
 		Key:     string(key),
 		BaseURL: fmt.Sprintf("%s/foo", serverUrl), // /foo is needed here because of how URLs are parsed by go-chef
+		SkipSSL: (os.Getenv("CHEF_SKIP_SSL") == "1"),
 	})
 	if err != nil {
 		printAndExit(err)

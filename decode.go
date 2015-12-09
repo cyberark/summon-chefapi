@@ -1,13 +1,13 @@
 package main
 
 import (
-	"encoding/base64"
-	"fmt"
-	"crypto/sha256"
 	"crypto/aes"
-	"errors"
 	"crypto/cipher"
+	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
+	"errors"
+	"fmt"
 )
 
 func decodeBase64(str string) []byte {
@@ -32,7 +32,7 @@ type version1Item struct {
 	Content interface{} `json:"json_wrapper"`
 }
 
-func version1Decoder(key []byte, iv, encryptedData string) (interface{}, error)  {
+func version1Decoder(key []byte, iv, encryptedData string) (interface{}, error) {
 	ciphertext := decodeBase64(encryptedData)
 	initVector := decodeBase64(iv)
 	keySha := sha256.Sum256(key)
@@ -42,7 +42,7 @@ func version1Decoder(key []byte, iv, encryptedData string) (interface{}, error) 
 		return nil, err
 	}
 
-	if len(ciphertext) % aes.BlockSize != 0 {
+	if len(ciphertext)%aes.BlockSize != 0 {
 		return nil, errors.New("Ciphertext is wrong length")
 	}
 

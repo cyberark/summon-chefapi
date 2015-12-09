@@ -1,6 +1,6 @@
 # summon-chefapi
 
-For many, Chef encrypted data bags are difficult to work with. This Summon provider allows you to use 
+For many, Chef encrypted data bags are difficult to work with. This Summon provider allows you to use
 [Summon + secrets.yml](http://conjurinc.github.io/summon/) to improve your development workflow with encrypted data bags.
 
 ## Example
@@ -38,8 +38,8 @@ Once `chef-client` finishes, the password is gone, not left on your system.
 ## Install
 
 1. Install the [latest release of Summon](https://github.com/conjurinc/summon#install).
-2. Download the [latest release of this provider](https://github.com/conjurinc/summon-chefapi/releases) 
-and extract it to `/usr/libexec/summon/`. 
+2. Download the [latest release of this provider](https://github.com/conjurinc/summon-chefapi/releases)
+and extract it to `/usr/libexec/summon/`.
 
 If you have more than one provider installed, select this one with `summon -p summon-chefapi ...`.
 
@@ -51,6 +51,7 @@ Configuration of this provider is through environment variables:
 * `CHEF_CLIENT_KEY_PATH`: The location of the file that contains the client key. (`client_key` in knife.rb)
 * `CHEF_SERVER_URL`: The URL for the Chef server. (`chef_server_url` in knife.rb)
 * `CHEF_DECRYPTION_KEY_PATH`: The location of the file that contains the decryption key.
+* `CHEF_SKIP_SSL`: Skip SSL verification (for self-signed certs). Set to "1" to activate.
 
 ---
 
