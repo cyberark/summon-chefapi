@@ -39,7 +39,7 @@ Once `chef-client` finishes, the password is gone, not left on your system.
 
 1. Install the [latest release of Summon](https://github.com/conjurinc/summon#install).
 2. Download the [latest release of this provider](https://github.com/conjurinc/summon-chefapi/releases)
-and extract it to `/usr/libexec/summon/`.
+and extract it to `/usr/local/lib/summon/`.
 
 If you have more than one provider installed, select this one with `summon -p summon-chefapi ...`.
 
