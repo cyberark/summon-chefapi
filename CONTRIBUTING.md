@@ -14,3 +14,11 @@ For general contribution and community guidelines, please see the [community rep
 From here your pull request will be reviewed and once you've responded to all
 feedback it will be merged into the project. Congratulations, you're a
 contributor!
+
+## Development
+
+To run: `go build && ./summon-chefapi`.
+
+To test: `go test`.
+
+To build: `./.build.sh && ./.package.sh`. `pkg/dist` holds the tar.gz files.
