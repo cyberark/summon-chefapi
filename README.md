@@ -55,10 +55,10 @@ Configuration of this provider is through environment variables:
 
 ---
 
-## Development
+## Contributing
 
-To run: `go build && ./summon-chefapi`.
+We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions of our development workflows, please see our [contributing
+guide][contrib].
 
-To test: `go test`.
+[contrib]: CONTRIBUTING.md
 
-To build: `./.build.sh && ./.package.sh`. `pkg/dist` holds the tar.gz files.
