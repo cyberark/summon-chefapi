@@ -1,3 +1,7 @@
+# DEPRECATED
+
+As of June 11, 2024 this project is deprecated and will no longer be maintained.
+
 # summon-chefapi
 
 For many, Chef encrypted data bags are difficult to work with. This Summon provider allows you to use
